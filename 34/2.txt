@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int LeftBoarder=SearchLeftBorder(nums,target);
+        int RightBoarder=SearchRightBorder(nums,target);
+        if(LeftBoarder==-2||RightBoarder==-2) return {-1,-1};
+        if(RightBoarder-LeftBoarder>=1) return {LeftBoarder,RightBoarder-1};
+        return {-1,-1};
+    }
+private:
+    int SearchRightBorder(vector<int>& nums, int target){
+        int Left=0;
+        int Right=nums.size();
+        int RightBoarder=-2;
+        while(Left<Right){
+            int Middle=Left+(Right-Left)/2;
+            if(nums[Middle]>target){
+                Right=Middle;
+            }
+            else{
+                Left=Middle+1;
+                RightBoarder=Left;
+            }
+        }
+        return RightBoarder;
+    }
+    int SearchLeftBorder(vector<int>& nums,int target){
+        int Left=0;
+        int Right=nums.size();
+        int LeftBoarder=-2;
+        while(Left<Right){
+            int Middle=Left+(Right-Left)/2;
+            if(nums[Middle]<target){
+                Left=Middle+1;
+            }
+            else{
+                Right=Middle;
+                LeftBoarder=Right;
+            }
+        }
+        return LeftBoarder;
+    }
+};

@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int Rightboarder=GetRightboarder(nums,target);
+        int Leftboarder=GetLightboarder(nums,target);
+        if(Leftboarder==-2||Rightboarder==-2) return {-1,-1};
+        if(Rightboarder-Leftboarder>1) return {Leftboarder+1,Rightboarder-1};
+        return {-1,-1};
+    }
+private:
+    int GetRightboarder(vector<int>& nums, int target){
+        int Left=0;
+        int Right=nums.size()-1;
+        int Rightboarder=-2;
+        while(Left<=Right){
+            int Middle=Left+(Right-Left)/2;
+            if(nums[Middle]>target){
+                Right=Middle-1;
+            }
+            else{
+                Left=Middle+1;
+                Rightboarder=Left;
+            }
+        }
+    return Rightboarder;
+    }
+    int GetLightboarder(vector<int>& nums, int target){
+        int Left=0;
+        int Right=nums.size()-1;
+        int Leftboarder=-2;
+        while(Left<=Right){
+            int Middle=Left+(Right-Left)/2;
+            if(nums[Middle]>=target){
+                Right=Middle-1;
+                Leftboarder=Right;
+            }
+            else{
+                Left=Middle+1;
+            }
+        }
+    return Leftboarder;
+    }
+};
