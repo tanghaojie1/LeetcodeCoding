@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        int Min=0;
+        int Max=num;
+        if(num==1) return 1;
+        while(Max-Min>1){
+            int Middle=(Max+Min)/2;
+            if(num/Middle<Middle){
+                Max=Middle;
+            }
+            else{
+                Min=Middle;
+                }
+        }
+        if(Min*Min==num) return true; else return false;
+    }
+};
