@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int Lowindex=0;
+        for(int Fastindex=0;Fastindex<nums.size();Fastindex++){
+           if(nums[Fastindex]!=val)
+             nums[Lowindex++]=nums[Fastindex];
+        }
+     return Lowindex;
+    }
+};
