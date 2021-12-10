@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int Sum=0;
+        int SubResult=0;
+        int Result=INT32_MAX;
+        for(int j=0;j<nums.size();j++){
+            Sum=0;
+            for(int i=j;i<nums.size();i++){
+                Sum+=nums[i];
+                if(Sum>=target){
+                    SubResult=i-j+1;
+                    Result=Result<SubResult?Result:SubResult;
+                    break;
+                }
+            }
+        }
+        return Result>=INT32_MAX?0:Result;
+    }
+};

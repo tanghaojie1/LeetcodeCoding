@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int i=0;
+        int Sum=0;
+        int SubResult=0;
+        int Result=INT32_MAX;
+        for(int j=0;j<nums.size();j++){
+            Sum+=nums[j];
+            while(Sum>=target){
+                SubResult=j-i+1;
+                Result=Result<SubResult?Result:SubResult;
+                Sum-=nums[i++];
+            }
+        }
+        return Result>=INT32_MAX?0:Result;
+    }
+};
