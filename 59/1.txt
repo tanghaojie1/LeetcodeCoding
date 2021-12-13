@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+         vector<vector<int>> mat(n,vector<int>(n));
+        int x_start=0,x_end=n-1,y_start=0,y_end=n-1;
+        int cnt=1,count=n*n;
+        while(cnt<=count){
+            for(int j=y_start;j<=y_end;j++){
+                mat[x_start][j]=cnt++;
+            }
+            x_start++;
+            for(int i=x_start;i<=x_end;i++){
+                mat[i][y_end]=cnt++;
+            }
+            y_end--;
+            for(int j=y_end;j>=y_start;j--){
+                mat[x_end][j]=cnt++;
+            }
+            x_end--;
+            for(int i=x_end;i>=x_start;i--){
+                mat[i][y_start]=cnt++;
+            }
+            y_start++;
+        }
+        return mat;
+    }
+};
