@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int GetSum(int n){
+        int sum=0;
+        while(n){
+            sum+=(n%10)*(n%10);
+            n=n/10;
+        }
+        return sum;
+    }
+    bool isHappy(int n) {
+        unordered_set<int> result;
+        while(1){
+            if(n==1) return true;
+            int sum=GetSum(n);
+            if(result.find(sum)!=result.end()){
+                return false;
+            }else{
+                result.insert(sum);
+            }
+            n=sum;
+        }
+    }
+};
