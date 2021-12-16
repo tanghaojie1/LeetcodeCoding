@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
+        unordered_map<int,int> res_map;
+        for(int a:nums1){
+            for(int b:nums2){
+                res_map[a+b]++;
+            }
+        }
+        int count=0;
+        for(int c:nums3){
+            for(int d:nums4){
+                if(res_map.find(0-c-d)!=res_map.end()){
+                    count+=res_map[0-c-d];
+                }
+            }
+        }
+        return count;
+    }
+};
