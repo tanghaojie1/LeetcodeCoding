@@ -1,0 +1,17 @@
+class Solution {
+public:
+    void reverse(string& s,int start,int end){
+        char temp;
+        for(int i=start,j=end;i<j;i++,j--){
+            temp=s[i];
+            s[i]=s[j];
+            s[j]=temp;
+        }
+    }
+    string reverseLeftWords(string s, int n) {
+        reverse(s,0,n-1);
+        reverse(s,n,s.size()-1);
+        reverse(s,0,s.size()-1);
+        return s;
+    }
+};
