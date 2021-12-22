@@ -1,0 +1,55 @@
+class Solution {
+public:
+    void reverse(string& s,int start,int end){
+        char temp;
+        for(int i=start,j=end;i<j;i++,j--){
+            temp=s[i];
+            s[i]=s[j];
+            s[j]=temp;
+        }
+    }
+    void RemoveEmpty(string& s){
+        int Fastindex=0,Lowindex=0;
+        //去除前面的空格
+        while(s.size()>0&&Fastindex<s.size()&&s[Fastindex]==' '){
+            Fastindex++;
+        }
+        //去除中间多余空格，每个单词中空一格
+        for(;Fastindex<s.size();Fastindex++){
+            if(Fastindex-1>0&&s[Fastindex]==s[Fastindex-1]&&s[Fastindex]==' '){
+                continue;
+            }else{
+                s[Lowindex++]=s[Fastindex];
+            }
+        }
+        if(Lowindex-1>0&&s[Lowindex-1]==' '){
+            s.resize(Lowindex-1);
+        }else{
+            s.resize(Lowindex);
+        }
+    }
+    string reverseWords(string s) {
+        RemoveEmpty(s);//去除空格
+        reverse(s,0,s.size()-1);
+        int start=0;
+        int end=0;
+        bool empty=true;
+        for(int i=0;i<s.size();i++){
+            if(empty&&s[i]!=' '){
+                start=i; //获取单词首
+                empty=false;
+            }
+            else if(!empty&&s[i]==' '&&s[i-1]!=' '){
+                end=i-1;
+                empty=true;
+                reverse(s,start,end);
+            }
+            else if(!empty&&i==(s.size()-1)&&s[i]!=' '){
+                end=i;
+                empty=true;
+                reverse(s,start,end);
+            }
+        }
+        return s;
+    }
+};
